@@ -1,0 +1,2 @@
+D:\Csharp\SIToolsNet8\obj\x86\Debug\SIToolsNet8.csproj.AssemblyReference.cache
+D:\Csharp\SIToolsNet8\obj\x86\Debug\SIToolsNet8.csproj.CoreCompileInputs.cache

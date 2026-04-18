@@ -1,0 +1,101 @@
+﻿<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{2D3E48BB-CE81-458E-8BA6-8E2C74D86649}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <NoStandardLibraries>false</NoStandardLibraries>
+    <AssemblyName>WindowsApplication</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>SIToolsNet8</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="README.md" />
+    <None Include="SITools.BLL\SITools.BLL.csproj" />
+    <None Include="SITools.DAL\SITools.DAL.csproj" />
+    <None Include="SITools.Models\SITools.Models.csproj" />
+    <None Include="SITools.UI\SITools.UI.csproj" />
+    <None Include="SIToolsNet8.slnx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="SITools.BLL\Services\EntPensionCalculationFacade.cs" />
+    <Compile Include="SITools.BLL\Services\ExcelService.cs" />
+    <Compile Include="SITools.BLL\Services\IInterestCalculationService.cs" />
+    <Compile Include="SITools.BLL\Services\ILateFeeCalculationService.cs" />
+    <Compile Include="SITools.BLL\Services\InterestCalculationService.cs" />
+    <Compile Include="SITools.BLL\Services\IPensionCalculationService.cs" />
+    <Compile Include="SITools.BLL\Services\LateFeeCalculationService.cs" />
+    <Compile Include="SITools.BLL\Services\PensionCalculationService.cs" />
+    <Compile Include="SITools.BLL\Services\ValidationService.cs" />
+    <Compile Include="SITools.DAL\Repositories\ContributionBaseRepository.cs" />
+    <Compile Include="SITools.DAL\Repositories\IContributionBaseRepository.cs" />
+    <Compile Include="SITools.DAL\Repositories\IInterestRateRepository.cs" />
+    <Compile Include="SITools.DAL\Repositories\InterestRateRepository.cs" />
+    <Compile Include="SITools.Models\Entities\BankruptcyRecord.cs" />
+    <Compile Include="SITools.Models\Entities\CalculationResult.cs" />
+    <Compile Include="SITools.Models\Entities\ContributionRecord.cs" />
+    <Compile Include="SITools.Models\Entities\ContributionType.cs" />
+    <Compile Include="SITools.Models\Entities\RateData.cs" />
+    <Compile Include="SITools.UI\Forms\AboutForm.cs" />
+    <Compile Include="SITools.UI\Forms\AboutForm.Designer.cs">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SITools.UI\Forms\EntBankruptcyForm.cs" />
+    <Compile Include="SITools.UI\Forms\EntBankruptcyForm.Designer.cs">
+      <DependentUpon>EntBankruptcyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SITools.UI\Forms\EntPensionForm.cs" />
+    <Compile Include="SITools.UI\Forms\EntPensionForm.Designer.cs">
+      <DependentUpon>EntPensionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SITools.UI\Forms\MainForm.cs" />
+    <Compile Include="SITools.UI\Forms\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SITools.UI\Forms\SettingForm.cs" />
+    <Compile Include="SITools.UI\Forms\SettingForm.Designer.cs">
+      <DependentUpon>SettingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SITools.UI\Program.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SITools.UI\Resources\SI.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />
+  <ProjectExtensions>
+    <VisualStudio AllowExistingFolder="true" />
+  </ProjectExtensions>
+</Project>
