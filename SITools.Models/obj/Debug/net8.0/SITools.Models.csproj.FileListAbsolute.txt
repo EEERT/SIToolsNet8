@@ -1,0 +1,12 @@
+/home/runner/work/SIToolsNet8/SIToolsNet8/SITools.Models/bin/Debug/net8.0/SITools.Models.deps.json
+/home/runner/work/SIToolsNet8/SIToolsNet8/SITools.Models/bin/Debug/net8.0/SITools.Models.dll
+/home/runner/work/SIToolsNet8/SIToolsNet8/SITools.Models/bin/Debug/net8.0/SITools.Models.pdb
+/home/runner/work/SIToolsNet8/SIToolsNet8/SITools.Models/obj/Debug/net8.0/SITools.Models.GeneratedMSBuildEditorConfig.editorconfig
+/home/runner/work/SIToolsNet8/SIToolsNet8/SITools.Models/obj/Debug/net8.0/SITools.Models.AssemblyInfoInputs.cache
+/home/runner/work/SIToolsNet8/SIToolsNet8/SITools.Models/obj/Debug/net8.0/SITools.Models.AssemblyInfo.cs
+/home/runner/work/SIToolsNet8/SIToolsNet8/SITools.Models/obj/Debug/net8.0/SITools.Models.csproj.CoreCompileInputs.cache
+/home/runner/work/SIToolsNet8/SIToolsNet8/SITools.Models/obj/Debug/net8.0/SITools.Models.sourcelink.json
+/home/runner/work/SIToolsNet8/SIToolsNet8/SITools.Models/obj/Debug/net8.0/SITools.Models.dll
+/home/runner/work/SIToolsNet8/SIToolsNet8/SITools.Models/obj/Debug/net8.0/refint/SITools.Models.dll
+/home/runner/work/SIToolsNet8/SIToolsNet8/SITools.Models/obj/Debug/net8.0/SITools.Models.pdb
+/home/runner/work/SIToolsNet8/SIToolsNet8/SITools.Models/obj/Debug/net8.0/ref/SITools.Models.dll
