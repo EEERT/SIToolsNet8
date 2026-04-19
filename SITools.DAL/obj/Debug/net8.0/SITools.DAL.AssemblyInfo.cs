@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SITools.DAL")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+678bcf66f8305cda6c3496a371a6a8e311f8ed4b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4292089977d92a21a0c342c4143bdfb449cc9d33")]
 [assembly: System.Reflection.AssemblyProductAttribute("SITools.DAL")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SITools.DAL")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

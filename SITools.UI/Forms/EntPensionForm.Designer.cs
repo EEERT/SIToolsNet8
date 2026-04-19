@@ -19,7 +19,7 @@ namespace SITools.UI.Forms
             tabSummary = new TabPage();
 
             // ===== 输入 Tab =====
-            panelInputTop = new Panel();
+            tlpInputTop = new TableLayoutPanel();
             grpInputFields = new GroupBox();
             lblName = new Label();
             txtName = new TextBox();
@@ -78,82 +78,123 @@ namespace SITools.UI.Forms
             tabControl.Dock = DockStyle.Fill;
             tabControl.Name = "tabControl";
             tabControl.SelectedIndex = 0;
+            tabControl.Font = new Font("Microsoft YaHei", 9F);
 
             // ===== tabInput =====
             tabInput.Text = "补缴总览";
             tabInput.Controls.Add(dgvInput);
             tabInput.Controls.Add(panelInputButtons);
-            tabInput.Controls.Add(panelInputTop);
-            tabInput.Padding = new Padding(5);
+            tabInput.Controls.Add(tlpInputTop);
+            tabInput.Padding = new Padding(4);
 
-            // panelInputTop（上半部：输入字段 + 计算选项）
-            panelInputTop.Dock = DockStyle.Top;
-            panelInputTop.Height = 160;
-            panelInputTop.Controls.Add(grpCalcOptions);
-            panelInputTop.Controls.Add(grpInputFields);
+            // tlpInputTop：两列 TableLayoutPanel，左侧输入字段自动填充，右侧计算选项固定宽度
+            tlpInputTop.Dock = DockStyle.Top;
+            tlpInputTop.Height = 165;
+            tlpInputTop.ColumnCount = 2;
+            tlpInputTop.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tlpInputTop.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 385F));
+            tlpInputTop.RowCount = 1;
+            tlpInputTop.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tlpInputTop.Padding = new Padding(0, 0, 0, 5);
 
             // grpInputFields
             grpInputFields.Text = "输入信息";
-            grpInputFields.Location = new Point(5, 5);
-            grpInputFields.Size = new Size(700, 148);
+            grpInputFields.Dock = DockStyle.Fill;
+            grpInputFields.Margin = new Padding(0, 0, 4, 0);
+            grpInputFields.Font = new Font("Microsoft YaHei", 9F);
 
-            int col1X = 10, col2X = 130, col3X = 280, col4X = 420, col5X = 570;
-            int row1Y = 20, row2Y = 65, row3Y = 110;
-            int lblW = 110, ctlW = 130, ctlH = 28;
+            int ctlH = 28;
+            int row1Y = 22, row2Y = 67, row3Y = 112;
+            // 三列布局：col1(左), col2(中), col3(右)
+            int c1L = 8, c1C = 108;   // 姓名/身份证/补缴类型
+            int c2L = 260, c2C = 355; // 开始/结束时间
+            int c3L = 462, c3C = 542; // 月缴费基数 / 是否保底 / 按钮
 
-            AddLabelAndControl(grpInputFields, lblName, "姓名：", col1X, row1Y, lblW, txtName, col2X, row1Y, ctlW, ctlH);
-            AddLabelAndControl(grpInputFields, lblIdCard, "身份证号码：", col1X, row2Y, lblW, txtIdCard, col2X, row2Y, ctlW * 2, ctlH);
-            AddLabelAndControl(grpInputFields, lblBegin, "补缴开始时间：", col3X, row1Y, lblW, txtBegin, col4X, row1Y, ctlW, ctlH);
-            AddLabelAndControl(grpInputFields, lblEnd, "补缴结束时间：", col3X, row2Y, lblW, txtEnd, col4X, row2Y, ctlW, ctlH);
-            AddLabelAndControl(grpInputFields, lblBase, "月缴费基数：", col5X, row1Y, 90, txtBase, col5X + 90, row1Y, 90, ctlH);
-            AddLabelAndControl(grpInputFields, lblType, "补缴类型：", col1X, row3Y, lblW, cmbContributionType, col2X, row3Y, 200, ctlH);
-            AddLabelAndControl(grpInputFields, lblLimit, "是否保底：", col3X, row3Y, lblW, cmbApplyLimit, col4X, row3Y, 90, ctlH);
+            AddLabelAndControl(grpInputFields, lblName, "姓名：", c1L, row1Y, 96, txtName, c1C, row1Y, 140, ctlH);
+            AddLabelAndControl(grpInputFields, lblIdCard, "身份证号码：", c1L, row2Y, 96, txtIdCard, c1C, row2Y, 170, ctlH);
+            AddLabelAndControl(grpInputFields, lblBegin, "补缴开始：", c2L, row1Y, 90, txtBegin, c2C, row1Y, 115, ctlH);
+            AddLabelAndControl(grpInputFields, lblEnd, "补缴结束：", c2L, row2Y, 90, txtEnd, c2C, row2Y, 115, ctlH);
+            AddLabelAndControl(grpInputFields, lblBase, "月缴费基数：", c3L, row1Y, 76, txtBase, c3C, row1Y, 95, ctlH);
+            AddLabelAndControl(grpInputFields, lblType, "补缴类型：", c1L, row3Y, 96, cmbContributionType, c1C, row3Y, 200, ctlH);
+            AddLabelAndControl(grpInputFields, lblLimit, "是否保底：", c2L, row3Y, 90, cmbApplyLimit, c2C, row3Y, 80, ctlH);
 
             cmbContributionType.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbApplyLimit.DropDownStyle = ComboBoxStyle.DropDownList;
 
             btnAdd.Text = "添加";
-            btnAdd.Location = new Point(610, row3Y);
-            btnAdd.Size = new Size(75, ctlH);
+            btnAdd.Location = new Point(c3L, row3Y);
+            btnAdd.Size = new Size(80, ctlH);
+            btnAdd.BackColor = Color.SteelBlue;
+            btnAdd.ForeColor = Color.White;
+            btnAdd.FlatStyle = FlatStyle.Flat;
+            btnAdd.FlatAppearance.BorderSize = 0;
             btnAdd.Click += btnAdd_Click;
             grpInputFields.Controls.Add(btnAdd);
 
-            // grpCalcOptions
+            // grpCalcOptions（右侧固定宽度列）
             grpCalcOptions.Text = "计算选项";
-            grpCalcOptions.Location = new Point(715, 5);
-            grpCalcOptions.Size = new Size(360, 148);
+            grpCalcOptions.Dock = DockStyle.Fill;
+            grpCalcOptions.Margin = new Padding(0);
+            grpCalcOptions.Font = new Font("Microsoft YaHei", 9F);
 
-            int oRow1 = 22, oRow2 = 58;
-            AddLabelAndControl(grpCalcOptions, new Label(), "计算利息：", 8, oRow1, 80, cmbCalcInterest, 92, oRow1, 60, ctlH);
-            AddLabelAndControl(grpCalcOptions, new Label(), "利息截止：", 165, oRow1, 80, dtpInterestEnd, 248, oRow1, 100, ctlH);
-            AddLabelAndControl(grpCalcOptions, new Label(), "计算滞纳金：", 8, oRow2, 80, cmbCalcLateFee, 92, oRow2, 60, ctlH);
-            AddLabelAndControl(grpCalcOptions, new Label(), "滞纳金截止：", 165, oRow2, 80, dtpLateFeeEnd, 248, oRow2, 100, ctlH);
+            // 使用 TableLayoutPanel 布局计算选项内的控件
+            var tlpOpts = new TableLayoutPanel
+            {
+                Dock = DockStyle.Fill,
+                ColumnCount = 4,
+                RowCount = 2,
+                Padding = new Padding(6, 4, 6, 4)
+            };
+            tlpOpts.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+            tlpOpts.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tlpOpts.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+            tlpOpts.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tlpOpts.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tlpOpts.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+
+            lblCalcInterest = new Label { Text = "计算利息：", AutoSize = true, Anchor = AnchorStyles.Right, TextAlign = ContentAlignment.MiddleRight };
+            lblInterestEnd = new Label { Text = "利息截止：", AutoSize = true, Anchor = AnchorStyles.Right, TextAlign = ContentAlignment.MiddleRight };
+            lblCalcLateFee = new Label { Text = "计算滞纳金：", AutoSize = true, Anchor = AnchorStyles.Right, TextAlign = ContentAlignment.MiddleRight };
+            lblLateFeeEnd = new Label { Text = "滞纳金截止：", AutoSize = true, Anchor = AnchorStyles.Right, TextAlign = ContentAlignment.MiddleRight };
 
             cmbCalcInterest.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbCalcInterest.Dock = DockStyle.Fill;
+            cmbCalcInterest.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+
             cmbCalcLateFee.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbCalcLateFee.Dock = DockStyle.Fill;
+            cmbCalcLateFee.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+
             dtpInterestEnd.Format = DateTimePickerFormat.Short;
+            dtpInterestEnd.Dock = DockStyle.Fill;
+
             dtpLateFeeEnd.Format = DateTimePickerFormat.Short;
+            dtpLateFeeEnd.Dock = DockStyle.Fill;
+
+            tlpOpts.Controls.Add(lblCalcInterest, 0, 0);
+            tlpOpts.Controls.Add(cmbCalcInterest, 1, 0);
+            tlpOpts.Controls.Add(lblInterestEnd, 2, 0);
+            tlpOpts.Controls.Add(dtpInterestEnd, 3, 0);
+            tlpOpts.Controls.Add(lblCalcLateFee, 0, 1);
+            tlpOpts.Controls.Add(cmbCalcLateFee, 1, 1);
+            tlpOpts.Controls.Add(lblLateFeeEnd, 2, 1);
+            tlpOpts.Controls.Add(dtpLateFeeEnd, 3, 1);
+            grpCalcOptions.Controls.Add(tlpOpts);
+
+            tlpInputTop.Controls.Add(grpInputFields, 0, 0);
+            tlpInputTop.Controls.Add(grpCalcOptions, 1, 0);
 
             // ===== panelInputButtons =====
             panelInputButtons.Dock = DockStyle.Bottom;
-            panelInputButtons.Height = 44;
-            btnCalc.Text = "开始计算";
-            btnCalc.Size = new Size(100, 34);
-            btnCalc.Location = new Point(8, 5);
-            btnCalc.BackColor = Color.SteelBlue;
-            btnCalc.ForeColor = Color.White;
+            panelInputButtons.Height = 50;
+            panelInputButtons.BackColor = Color.FromArgb(245, 246, 250);
+            SetStyledButton(btnCalc, "开始计算", 8, 8, 100, 34, true);
+            SetStyledButton(btnReset, "重置清空", 120, 8, 100, 34, false);
+            SetStyledButton(btnImportExcel, "从Excel导入", 232, 8, 110, 34, false);
+            SetStyledButton(btnRemoveRow, "删除选中行", 354, 8, 110, 34, false);
             btnCalc.Click += btnCalc_Click;
-            btnReset.Text = "重置清空";
-            btnReset.Size = new Size(100, 34);
-            btnReset.Location = new Point(120, 5);
             btnReset.Click += btnReset_Click;
-            btnImportExcel.Text = "从Excel导入";
-            btnImportExcel.Size = new Size(110, 34);
-            btnImportExcel.Location = new Point(232, 5);
             btnImportExcel.Click += btnImportExcel_Click;
-            btnRemoveRow.Text = "删除选中行";
-            btnRemoveRow.Size = new Size(110, 34);
-            btnRemoveRow.Location = new Point(354, 5);
             btnRemoveRow.Click += btnRemoveRow_Click;
             panelInputButtons.Controls.AddRange(new Control[] { btnCalc, btnReset, btnImportExcel, btnRemoveRow });
 
@@ -163,6 +204,8 @@ namespace SITools.UI.Forms
             dgvInput.AllowUserToDeleteRows = true;
             dgvInput.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvInput.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvInput.BorderStyle = BorderStyle.None;
+            ApplyDgvStyle(dgvInput);
             SetupInputGridColumns();
 
             // ===== tabDetail =====
@@ -171,10 +214,9 @@ namespace SITools.UI.Forms
             tabDetail.Controls.Add(panelDetailButtons);
 
             panelDetailButtons.Dock = DockStyle.Bottom;
-            panelDetailButtons.Height = 44;
-            btnExportDetail.Text = "导出明细到Excel";
-            btnExportDetail.Size = new Size(140, 34);
-            btnExportDetail.Location = new Point(8, 5);
+            panelDetailButtons.Height = 50;
+            panelDetailButtons.BackColor = Color.FromArgb(245, 246, 250);
+            SetStyledButton(btnExportDetail, "导出明细到Excel", 8, 8, 140, 34, true);
             btnExportDetail.Click += btnExportDetail_Click;
             panelDetailButtons.Controls.Add(btnExportDetail);
 
@@ -182,6 +224,8 @@ namespace SITools.UI.Forms
             dgvDetail.ReadOnly = true;
             dgvDetail.AllowUserToAddRows = false;
             dgvDetail.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvDetail.BorderStyle = BorderStyle.None;
+            ApplyDgvStyle(dgvDetail);
             SetupDetailGridColumns();
 
             // ===== tabSummary =====
@@ -190,10 +234,9 @@ namespace SITools.UI.Forms
             tabSummary.Controls.Add(panelSummaryButtons);
 
             panelSummaryButtons.Dock = DockStyle.Bottom;
-            panelSummaryButtons.Height = 44;
-            btnExportSummary.Text = "导出汇总到Excel";
-            btnExportSummary.Size = new Size(140, 34);
-            btnExportSummary.Location = new Point(8, 5);
+            panelSummaryButtons.Height = 50;
+            panelSummaryButtons.BackColor = Color.FromArgb(245, 246, 250);
+            SetStyledButton(btnExportSummary, "导出汇总到Excel", 8, 8, 140, 34, true);
             btnExportSummary.Click += btnExportSummary_Click;
             panelSummaryButtons.Controls.Add(btnExportSummary);
 
@@ -201,6 +244,8 @@ namespace SITools.UI.Forms
             dgvSummary.ReadOnly = true;
             dgvSummary.AllowUserToAddRows = false;
             dgvSummary.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvSummary.BorderStyle = BorderStyle.None;
+            ApplyDgvStyle(dgvSummary);
 
             // ===== EntPensionForm =====
             AutoScaleDimensions = new SizeF(7F, 17F);
@@ -264,6 +309,44 @@ namespace SITools.UI.Forms
             dgv.Columns.Add(col);
         }
 
+        private static void ApplyDgvStyle(DataGridView dgv)
+        {
+            dgv.EnableHeadersVisualStyles = false;
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(41, 128, 185);
+            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Microsoft YaHei", 9F, FontStyle.Regular);
+            dgv.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(41, 128, 185);
+            dgv.DefaultCellStyle.Font = new Font("Microsoft YaHei", 9F);
+            dgv.DefaultCellStyle.SelectionBackColor = Color.FromArgb(189, 215, 238);
+            dgv.DefaultCellStyle.SelectionForeColor = Color.Black;
+            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(235, 244, 251);
+            dgv.GridColor = Color.FromArgb(210, 225, 240);
+            dgv.RowHeadersVisible = false;
+            dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+        }
+
+        private static void SetStyledButton(Button btn, string text, int x, int y, int w, int h, bool primary)
+        {
+            btn.Text = text;
+            btn.Location = new Point(x, y);
+            btn.Size = new Size(w, h);
+            btn.FlatStyle = FlatStyle.Flat;
+            btn.Font = new Font("Microsoft YaHei", 9F);
+            if (primary)
+            {
+                btn.BackColor = Color.SteelBlue;
+                btn.ForeColor = Color.White;
+                btn.FlatAppearance.BorderSize = 0;
+            }
+            else
+            {
+                btn.BackColor = Color.White;
+                btn.ForeColor = Color.FromArgb(60, 60, 60);
+                btn.FlatAppearance.BorderColor = Color.FromArgb(180, 200, 220);
+                btn.FlatAppearance.BorderSize = 1;
+            }
+        }
+
         private static void AddLabelAndControl(Control parent, Label lbl, string text, int lx, int ly, int lw, Control ctl, int cx, int cy, int cw, int ch)
         {
             lbl.AutoSize = false;
@@ -277,9 +360,10 @@ namespace SITools.UI.Forms
             parent.Controls.Add(ctl);
         }
 
+        private TableLayoutPanel tlpInputTop;
         private TabControl tabControl;
         private TabPage tabInput, tabDetail, tabSummary;
-        private Panel panelInputTop, panelInputButtons, panelDetailButtons, panelSummaryButtons;
+        private Panel panelInputButtons, panelDetailButtons, panelSummaryButtons;
         private GroupBox grpInputFields, grpCalcOptions;
         private Label lblName, lblIdCard, lblBegin, lblEnd, lblBase, lblType, lblLimit;
         private Label lblCalcInterest, lblInterestEnd, lblCalcLateFee, lblLateFeeEnd;

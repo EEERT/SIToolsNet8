@@ -52,6 +52,7 @@ namespace SITools.UI.Forms
             tabControl.Controls.Add(tabDetail);
             tabControl.Controls.Add(tabSummary);
             tabControl.Name = "tabControl";
+            tabControl.Font = new Font("Microsoft YaHei", 9F);
 
             // tabInput
             tabInput.Text = "清算总览";
@@ -61,34 +62,93 @@ namespace SITools.UI.Forms
 
             // panelOptions
             panelOptions.Dock = DockStyle.Top;
-            panelOptions.Height = 80;
+            panelOptions.Height = 82;
             panelOptions.Controls.Add(grpOptions);
 
-            // grpOptions
+            // grpOptions：使用 TableLayoutPanel 内部布局，随窗口宽度自适应
             grpOptions.Text = "计算选项";
             grpOptions.Dock = DockStyle.Fill;
-            grpOptions.Margin = new Padding(5);
-            grpOptions.Padding = new Padding(5);
+            grpOptions.Font = new Font("Microsoft YaHei", 9F);
+            grpOptions.Padding = new Padding(4, 2, 4, 2);
 
-            int ctlH = 28;
-            AddLabelControl(grpOptions, lblCalcInterest, "计算利息：", 10, 22, 70, cmbCalcInterest, 84, 22, 60, ctlH);
-            AddLabelControl(grpOptions, lblInterestEnd, "利息截止：", 155, 22, 70, dtpInterestEnd, 229, 22, 120, ctlH);
-            AddLabelControl(grpOptions, lblCalcLateFee, "计算滞纳金：", 360, 22, 80, cmbCalcLateFee, 444, 22, 60, ctlH);
-            AddLabelControl(grpOptions, lblLateFeeEnd, "滞纳金截止：", 515, 22, 80, dtpLateFeeEnd, 599, 22, 120, ctlH);
+            var tlpOpts = new TableLayoutPanel
+            {
+                Dock = DockStyle.Fill,
+                ColumnCount = 4,
+                RowCount = 2,
+                Padding = new Padding(4, 4, 4, 4)
+            };
+            tlpOpts.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));          // label
+            tlpOpts.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));      // control
+            tlpOpts.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));          // label
+            tlpOpts.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));      // control
+            tlpOpts.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tlpOpts.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+
+            lblCalcInterest.Text = "计算利息：";
+            lblCalcInterest.AutoSize = true;
+            lblCalcInterest.Anchor = AnchorStyles.Right;
+            lblCalcInterest.TextAlign = ContentAlignment.MiddleRight;
+
+            lblInterestEnd.Text = "利息截止：";
+            lblInterestEnd.AutoSize = true;
+            lblInterestEnd.Anchor = AnchorStyles.Right;
+            lblInterestEnd.TextAlign = ContentAlignment.MiddleRight;
+
+            lblCalcLateFee.Text = "计算滞纳金：";
+            lblCalcLateFee.AutoSize = true;
+            lblCalcLateFee.Anchor = AnchorStyles.Right;
+            lblCalcLateFee.TextAlign = ContentAlignment.MiddleRight;
+
+            lblLateFeeEnd.Text = "滞纳金截止：";
+            lblLateFeeEnd.AutoSize = true;
+            lblLateFeeEnd.Anchor = AnchorStyles.Right;
+            lblLateFeeEnd.TextAlign = ContentAlignment.MiddleRight;
 
             cmbCalcInterest.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbCalcLateFee.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbCalcInterest.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+
             dtpInterestEnd.Format = DateTimePickerFormat.Short;
+            dtpInterestEnd.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+
+            cmbCalcLateFee.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbCalcLateFee.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+
             dtpLateFeeEnd.Format = DateTimePickerFormat.Short;
+            dtpLateFeeEnd.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+
+            tlpOpts.Controls.Add(lblCalcInterest, 0, 0);
+            tlpOpts.Controls.Add(cmbCalcInterest, 1, 0);
+            tlpOpts.Controls.Add(lblInterestEnd, 2, 0);
+            tlpOpts.Controls.Add(dtpInterestEnd, 3, 0);
+            tlpOpts.Controls.Add(lblCalcLateFee, 0, 1);
+            tlpOpts.Controls.Add(cmbCalcLateFee, 1, 1);
+            tlpOpts.Controls.Add(lblLateFeeEnd, 2, 1);
+            tlpOpts.Controls.Add(dtpLateFeeEnd, 3, 1);
+            grpOptions.Controls.Add(tlpOpts);
 
             // panelButtons
             panelButtons.Dock = DockStyle.Bottom;
-            panelButtons.Height = 44;
-            SetBtn(btnImportExcel, "从Excel导入", 8, 5, 110, 34);
-            SetBtn(btnCalc, "开始计算", 130, 5, 100, 34);
-            SetBtn(btnReset, "重置清空", 242, 5, 100, 34);
+            panelButtons.Height = 50;
+            panelButtons.BackColor = Color.FromArgb(245, 246, 250);
+            SetBtn(btnImportExcel, "从Excel导入", 8, 8, 110, 34);
+            SetBtn(btnCalc, "开始计算", 130, 8, 100, 34);
+            SetBtn(btnReset, "重置清空", 242, 8, 100, 34);
+
+            btnImportExcel.FlatStyle = FlatStyle.Flat;
+            btnImportExcel.FlatAppearance.BorderColor = Color.FromArgb(180, 200, 220);
+            btnImportExcel.Font = new Font("Microsoft YaHei", 9F);
+
             btnCalc.BackColor = Color.SteelBlue;
             btnCalc.ForeColor = Color.White;
+            btnCalc.FlatStyle = FlatStyle.Flat;
+            btnCalc.FlatAppearance.BorderSize = 0;
+            btnCalc.Font = new Font("Microsoft YaHei", 9F);
+
+            btnReset.FlatStyle = FlatStyle.Flat;
+            btnReset.FlatAppearance.BorderColor = Color.FromArgb(180, 200, 220);
+            btnReset.Font = new Font("Microsoft YaHei", 9F);
+
             btnImportExcel.Click += btnImportExcel_Click;
             btnCalc.Click += btnCalc_Click;
             btnReset.Click += btnReset_Click;
@@ -98,6 +158,8 @@ namespace SITools.UI.Forms
             dgvInput.Dock = DockStyle.Fill;
             dgvInput.AllowUserToAddRows = true;
             dgvInput.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvInput.BorderStyle = BorderStyle.None;
+            ApplyDgvStyle(dgvInput);
             SetupInputColumns();
 
             // tabDetail
@@ -106,8 +168,14 @@ namespace SITools.UI.Forms
             tabDetail.Controls.Add(panelDetailButtons);
 
             panelDetailButtons.Dock = DockStyle.Bottom;
-            panelDetailButtons.Height = 44;
-            SetBtn(btnExportDetail, "导出明细到Excel", 8, 5, 140, 34);
+            panelDetailButtons.Height = 50;
+            panelDetailButtons.BackColor = Color.FromArgb(245, 246, 250);
+            SetBtn(btnExportDetail, "导出明细到Excel", 8, 8, 140, 34);
+            btnExportDetail.BackColor = Color.SteelBlue;
+            btnExportDetail.ForeColor = Color.White;
+            btnExportDetail.FlatStyle = FlatStyle.Flat;
+            btnExportDetail.FlatAppearance.BorderSize = 0;
+            btnExportDetail.Font = new Font("Microsoft YaHei", 9F);
             btnExportDetail.Click += btnExportDetail_Click;
             panelDetailButtons.Controls.Add(btnExportDetail);
 
@@ -115,6 +183,8 @@ namespace SITools.UI.Forms
             dgvDetail.ReadOnly = true;
             dgvDetail.AllowUserToAddRows = false;
             dgvDetail.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvDetail.BorderStyle = BorderStyle.None;
+            ApplyDgvStyle(dgvDetail);
             SetupDetailColumns();
 
             // tabSummary
@@ -123,8 +193,14 @@ namespace SITools.UI.Forms
             tabSummary.Controls.Add(panelSummaryButtons);
 
             panelSummaryButtons.Dock = DockStyle.Bottom;
-            panelSummaryButtons.Height = 44;
-            SetBtn(btnExportSummary, "导出汇总到Excel", 8, 5, 140, 34);
+            panelSummaryButtons.Height = 50;
+            panelSummaryButtons.BackColor = Color.FromArgb(245, 246, 250);
+            SetBtn(btnExportSummary, "导出汇总到Excel", 8, 8, 140, 34);
+            btnExportSummary.BackColor = Color.SteelBlue;
+            btnExportSummary.ForeColor = Color.White;
+            btnExportSummary.FlatStyle = FlatStyle.Flat;
+            btnExportSummary.FlatAppearance.BorderSize = 0;
+            btnExportSummary.Font = new Font("Microsoft YaHei", 9F);
             btnExportSummary.Click += btnExportSummary_Click;
             panelSummaryButtons.Controls.Add(btnExportSummary);
 
@@ -132,6 +208,8 @@ namespace SITools.UI.Forms
             dgvSummary.ReadOnly = true;
             dgvSummary.AllowUserToAddRows = false;
             dgvSummary.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvSummary.BorderStyle = BorderStyle.None;
+            ApplyDgvStyle(dgvSummary);
 
             // Form
             AutoScaleDimensions = new SizeF(7F, 17F);
@@ -192,17 +270,20 @@ namespace SITools.UI.Forms
             btn.Size = new Size(w, h);
         }
 
-        private static void AddLabelControl(Control parent, Label lbl, string text, int lx, int ly, int lw, Control ctl, int cx, int cy, int cw, int ch)
+        private static void ApplyDgvStyle(DataGridView dgv)
         {
-            lbl.AutoSize = false;
-            lbl.Text = text;
-            lbl.Location = new Point(lx, ly + 4);
-            lbl.Size = new Size(lw, ch);
-            lbl.TextAlign = ContentAlignment.MiddleRight;
-            ctl.Location = new Point(cx, cy);
-            ctl.Size = new Size(cw, ch);
-            parent.Controls.Add(lbl);
-            parent.Controls.Add(ctl);
+            dgv.EnableHeadersVisualStyles = false;
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(41, 128, 185);
+            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Microsoft YaHei", 9F, FontStyle.Regular);
+            dgv.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(41, 128, 185);
+            dgv.DefaultCellStyle.Font = new Font("Microsoft YaHei", 9F);
+            dgv.DefaultCellStyle.SelectionBackColor = Color.FromArgb(189, 215, 238);
+            dgv.DefaultCellStyle.SelectionForeColor = Color.Black;
+            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(235, 244, 251);
+            dgv.GridColor = Color.FromArgb(210, 225, 240);
+            dgv.RowHeadersVisible = false;
+            dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }
 
         private TabControl tabControl;
