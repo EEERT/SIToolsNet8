@@ -86,7 +86,7 @@ namespace SITools.UI.Forms
             btnSave.Font = new Font("Microsoft YaHei", 9.5F);
             btnSave.Click += btnSave_Click;
 
-            btnReset.Text = "还  原";
+            btnReset.Text = "还原";
             btnReset.Size = new Size(86, 34);
             btnReset.Location = new Point(122, 9);
             btnReset.FlatStyle = FlatStyle.Flat;

@@ -121,7 +121,7 @@ namespace SITools.UI.Forms
             cmbContributionType.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbApplyLimit.DropDownStyle = ComboBoxStyle.DropDownList;
 
-            btnAdd.Text = "添  加";
+            btnAdd.Text = "添加";
             btnAdd.Location = new Point(c3L, row3Y);
             btnAdd.Size = new Size(80, ctlH);
             btnAdd.BackColor = Color.SteelBlue;

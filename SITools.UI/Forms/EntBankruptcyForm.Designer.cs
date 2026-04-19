@@ -74,30 +74,14 @@ namespace SITools.UI.Forms
             var tlpOpts = new TableLayoutPanel
             {
                 Dock = DockStyle.Fill,
-                ColumnCount = 8,
-                RowCount = 1,
+                ColumnCount = 4,
+                RowCount = 2,
                 Padding = new Padding(4, 4, 4, 4)
             };
-            tlpOpts.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));          // 计算利息 label
-            tlpOpts.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 60F));     // cmbCalcInterest
-            tlpOpts.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));      // spacer
-            tlpOpts.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));          // 利息截止 label
-            tlpOpts.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 120F));    // dtpInterestEnd
-            tlpOpts.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));      // spacer
-            tlpOpts.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));          // 计算滞纳金 label
-            tlpOpts.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 60F));     // cmbCalcLateFee
-
-            // 增加第二行放截止日期（考虑到宽度可能不够时）
-            // 改为：8列1行，两个截止日期直接放在同行中（spacer帮助对齐）
-            // 实际上对于 minWidth=1000 的窗体，水平空间足够
-            // 调整为 4列2行更清晰
-            tlpOpts.ColumnCount = 4;
-            tlpOpts.ColumnStyles.Clear();
             tlpOpts.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));          // label
             tlpOpts.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));      // control
             tlpOpts.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));          // label
             tlpOpts.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));      // control
-            tlpOpts.RowCount = 2;
             tlpOpts.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tlpOpts.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
 

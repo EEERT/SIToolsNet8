@@ -31,7 +31,7 @@ namespace SITools.UI.Forms
             panelBottom.BackColor = Color.FromArgb(245, 246, 250);
 
             // btnClose
-            btnClose.Text = "关  闭";
+            btnClose.Text = "关闭";
             btnClose.Size = new Size(100, 34);
             btnClose.BackColor = Color.SteelBlue;
             btnClose.ForeColor = Color.White;
