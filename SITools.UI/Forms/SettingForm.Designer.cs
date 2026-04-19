@@ -23,11 +23,13 @@ namespace SITools.UI.Forms
 
             // lblTitle
             lblTitle.Dock = DockStyle.Top;
-            lblTitle.Height = 36;
+            lblTitle.Height = 38;
             lblTitle.Text = "历年社保记账利率参数（可直接在表格中修改，点击保存生效）";
-            lblTitle.Font = new Font("Microsoft YaHei", 10F);
+            lblTitle.Font = new Font("Microsoft YaHei", 9.5F);
+            lblTitle.ForeColor = Color.FromArgb(60, 60, 60);
             lblTitle.TextAlign = ContentAlignment.MiddleLeft;
-            lblTitle.Padding = new Padding(8, 0, 0, 0);
+            lblTitle.Padding = new Padding(10, 0, 0, 0);
+            lblTitle.BackColor = Color.FromArgb(245, 246, 250);
 
             // dgvRates
             dgvRates.Dock = DockStyle.Fill;
@@ -35,6 +37,21 @@ namespace SITools.UI.Forms
             dgvRates.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvRates.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvRates.AllowUserToAddRows = false;
+            dgvRates.BorderStyle = BorderStyle.None;
+
+            // DataGridView 样式
+            dgvRates.EnableHeadersVisualStyles = false;
+            dgvRates.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(41, 128, 185);
+            dgvRates.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgvRates.ColumnHeadersDefaultCellStyle.Font = new Font("Microsoft YaHei", 9.5F, FontStyle.Regular);
+            dgvRates.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(41, 128, 185);
+            dgvRates.DefaultCellStyle.Font = new Font("Microsoft YaHei", 9.5F);
+            dgvRates.DefaultCellStyle.SelectionBackColor = Color.FromArgb(189, 215, 238);
+            dgvRates.DefaultCellStyle.SelectionForeColor = Color.Black;
+            dgvRates.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(235, 244, 251);
+            dgvRates.GridColor = Color.FromArgb(210, 225, 240);
+            dgvRates.RowHeadersVisible = false;
+            dgvRates.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
             var yearCol = new DataGridViewTextBoxColumn
             {
@@ -56,18 +73,25 @@ namespace SITools.UI.Forms
 
             // panelButtons
             panelButtons.Dock = DockStyle.Bottom;
-            panelButtons.Height = 48;
+            panelButtons.Height = 52;
+            panelButtons.BackColor = Color.FromArgb(245, 246, 250);
 
             btnSave.Text = "保存修改";
             btnSave.Size = new Size(100, 34);
-            btnSave.Location = new Point(10, 7);
+            btnSave.Location = new Point(10, 9);
             btnSave.BackColor = Color.SteelBlue;
             btnSave.ForeColor = Color.White;
+            btnSave.FlatStyle = FlatStyle.Flat;
+            btnSave.FlatAppearance.BorderSize = 0;
+            btnSave.Font = new Font("Microsoft YaHei", 9.5F);
             btnSave.Click += btnSave_Click;
 
-            btnReset.Text = "还原";
-            btnReset.Size = new Size(80, 34);
-            btnReset.Location = new Point(122, 7);
+            btnReset.Text = "还  原";
+            btnReset.Size = new Size(86, 34);
+            btnReset.Location = new Point(122, 9);
+            btnReset.FlatStyle = FlatStyle.Flat;
+            btnReset.FlatAppearance.BorderColor = Color.FromArgb(180, 200, 220);
+            btnReset.Font = new Font("Microsoft YaHei", 9.5F);
             btnReset.Click += btnReset_Click;
 
             panelButtons.Controls.AddRange(new Control[] { btnSave, btnReset });

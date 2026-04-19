@@ -23,8 +23,11 @@ namespace SITools.UI.Forms
             menuItemPersonalAccount = new ToolStripMenuItem();
             menuItemHelp = new ToolStripMenuItem();
             menuItemAbout = new ToolStripMenuItem();
+            statusStrip = new StatusStrip();
+            statusLabel = new ToolStripStatusLabel();
             panelContent = new Panel();
             labelTitle = new Label();
+            labelSubtitle = new Label();
             menuStrip.SuspendLayout();
             panelContent.SuspendLayout();
             SuspendLayout();
@@ -40,6 +43,7 @@ namespace SITools.UI.Forms
             menuStrip.Name = "menuStrip";
             menuStrip.Size = new Size(1024, 24);
             menuStrip.TabIndex = 0;
+            menuStrip.Font = new Font("Microsoft YaHei", 9F);
 
             // menuItemTools
             menuItemTools.DropDownItems.AddRange(new ToolStripItem[] { menuItemSettings });
@@ -92,8 +96,22 @@ namespace SITools.UI.Forms
             menuItemAbout.Text = "关于(&A)";
             menuItemAbout.Click += menuItemAbout_Click;
 
+            // statusStrip
+            statusStrip.Items.AddRange(new ToolStripItem[] { statusLabel });
+            statusStrip.Location = new Point(0, 616);
+            statusStrip.Name = "statusStrip";
+            statusStrip.Font = new Font("Microsoft YaHei", 8.5F);
+            statusStrip.BackColor = Color.FromArgb(41, 128, 185);
+            statusStrip.ForeColor = Color.White;
+
+            // statusLabel
+            statusLabel.Name = "statusLabel";
+            statusLabel.Text = "就绪  |  请从菜单选择功能模块";
+            statusLabel.ForeColor = Color.White;
+
             // panelContent
-            panelContent.BackColor = Color.WhiteSmoke;
+            panelContent.BackColor = Color.FromArgb(245, 246, 250);
+            panelContent.Controls.Add(labelSubtitle);
             panelContent.Controls.Add(labelTitle);
             panelContent.Dock = DockStyle.Fill;
             panelContent.Location = new Point(0, 24);
@@ -102,17 +120,28 @@ namespace SITools.UI.Forms
             // labelTitle
             labelTitle.AutoSize = false;
             labelTitle.Dock = DockStyle.Fill;
-            labelTitle.Font = new Font("Microsoft YaHei", 22F, FontStyle.Regular);
+            labelTitle.Font = new Font("Microsoft YaHei", 24F, FontStyle.Regular);
             labelTitle.ForeColor = Color.SteelBlue;
             labelTitle.Name = "labelTitle";
             labelTitle.Text = "社会保险费征缴管理工具";
             labelTitle.TextAlign = ContentAlignment.MiddleCenter;
+
+            // labelSubtitle
+            labelSubtitle.AutoSize = false;
+            labelSubtitle.Dock = DockStyle.Bottom;
+            labelSubtitle.Height = 36;
+            labelSubtitle.Font = new Font("Microsoft YaHei", 9.5F);
+            labelSubtitle.ForeColor = Color.FromArgb(120, 120, 120);
+            labelSubtitle.Name = "labelSubtitle";
+            labelSubtitle.Text = "补缴测算 · 破产清算 · 参数查询 | 请从顶部菜单选择功能模块";
+            labelSubtitle.TextAlign = ContentAlignment.MiddleCenter;
 
             // MainForm
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1024, 640);
             Controls.Add(panelContent);
+            Controls.Add(statusStrip);
             Controls.Add(menuStrip);
             MainMenuStrip = menuStrip;
             MinimumSize = new Size(900, 600);
@@ -137,7 +166,10 @@ namespace SITools.UI.Forms
         private ToolStripMenuItem menuItemPersonalAccount;
         private ToolStripMenuItem menuItemHelp;
         private ToolStripMenuItem menuItemAbout;
+        private StatusStrip statusStrip;
+        private ToolStripStatusLabel statusLabel;
         private Panel panelContent;
         private Label labelTitle;
+        private Label labelSubtitle;
     }
 }
