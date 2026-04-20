@@ -89,7 +89,7 @@ namespace SITools.UI.Forms
 
             // tlpInputTop：两列 TableLayoutPanel，左侧输入字段自动填充，右侧计算选项固定宽度
             tlpInputTop.Dock = DockStyle.Top;
-            tlpInputTop.Height = 165;
+            tlpInputTop.Height = 180;
             tlpInputTop.ColumnCount = 2;
             tlpInputTop.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tlpInputTop.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 385F));
@@ -105,18 +105,18 @@ namespace SITools.UI.Forms
 
             int ctlH = 28;
             int row1Y = 22, row2Y = 67, row3Y = 112;
-            // 三列布局：col1(左), col2(中), col3(右)
-            int c1L = 8, c1C = 108;   // 姓名/身份证/补缴类型
-            int c2L = 260, c2C = 355; // 开始/结束时间
-            int c3L = 462, c3C = 542; // 月缴费基数 / 是否保底 / 按钮
+            // 三列布局（已调整以消除控件重叠）：col1(左), col2(中), col3(右)
+            int c1L = 8,   c1LW = 95, c1C = 106;  // 姓名/身份证/补缴类型
+            int c2L = 290, c2LW = 90, c2C = 384;  // 开始/结束时间/是否保底
+            int c3L = 512, c3LW = 90, c3C = 606;  // 月缴费基数 / 按钮
 
-            AddLabelAndControl(grpInputFields, lblName, "姓名：", c1L, row1Y, 96, txtName, c1C, row1Y, 140, ctlH);
-            AddLabelAndControl(grpInputFields, lblIdCard, "身份证号码：", c1L, row2Y, 96, txtIdCard, c1C, row2Y, 170, ctlH);
-            AddLabelAndControl(grpInputFields, lblBegin, "补缴开始：", c2L, row1Y, 90, txtBegin, c2C, row1Y, 115, ctlH);
-            AddLabelAndControl(grpInputFields, lblEnd, "补缴结束：", c2L, row2Y, 90, txtEnd, c2C, row2Y, 115, ctlH);
-            AddLabelAndControl(grpInputFields, lblBase, "月缴费基数：", c3L, row1Y, 76, txtBase, c3C, row1Y, 95, ctlH);
-            AddLabelAndControl(grpInputFields, lblType, "补缴类型：", c1L, row3Y, 96, cmbContributionType, c1C, row3Y, 200, ctlH);
-            AddLabelAndControl(grpInputFields, lblLimit, "是否保底：", c2L, row3Y, 90, cmbApplyLimit, c2C, row3Y, 80, ctlH);
+            AddLabelAndControl(grpInputFields, lblName, "姓名：", c1L, row1Y, c1LW, txtName, c1C, row1Y, 170, ctlH);
+            AddLabelAndControl(grpInputFields, lblIdCard, "身份证号码：", c1L, row2Y, c1LW, txtIdCard, c1C, row2Y, 170, ctlH);
+            AddLabelAndControl(grpInputFields, lblBegin, "补缴开始：", c2L, row1Y, c2LW, txtBegin, c2C, row1Y, 115, ctlH);
+            AddLabelAndControl(grpInputFields, lblEnd, "补缴结束：", c2L, row2Y, c2LW, txtEnd, c2C, row2Y, 115, ctlH);
+            AddLabelAndControl(grpInputFields, lblBase, "月缴费基数：", c3L, row1Y, c3LW, txtBase, c3C, row1Y, 85, ctlH);
+            AddLabelAndControl(grpInputFields, lblType, "补缴类型：", c1L, row3Y, c1LW, cmbContributionType, c1C, row3Y, 180, ctlH);
+            AddLabelAndControl(grpInputFields, lblLimit, "是否保底：", c2L, row3Y, c2LW, cmbApplyLimit, c2C, row3Y, 95, ctlH);
 
             cmbContributionType.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbApplyLimit.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -145,25 +145,23 @@ namespace SITools.UI.Forms
                 RowCount = 2,
                 Padding = new Padding(6, 4, 6, 4)
             };
-            tlpOpts.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+            tlpOpts.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 90F));
             tlpOpts.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tlpOpts.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+            tlpOpts.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 90F));
             tlpOpts.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tlpOpts.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tlpOpts.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
 
-            lblCalcInterest = new Label { Text = "计算利息：", AutoSize = true, Anchor = AnchorStyles.Right, TextAlign = ContentAlignment.MiddleRight };
-            lblInterestEnd = new Label { Text = "利息截止：", AutoSize = true, Anchor = AnchorStyles.Right, TextAlign = ContentAlignment.MiddleRight };
-            lblCalcLateFee = new Label { Text = "计算滞纳金：", AutoSize = true, Anchor = AnchorStyles.Right, TextAlign = ContentAlignment.MiddleRight };
-            lblLateFeeEnd = new Label { Text = "滞纳金截止：", AutoSize = true, Anchor = AnchorStyles.Right, TextAlign = ContentAlignment.MiddleRight };
+            lblCalcInterest = new Label { Text = "计算利息：", AutoSize = false, Dock = DockStyle.Fill, TextAlign = ContentAlignment.MiddleCenter };
+            lblInterestEnd = new Label { Text = "利息截止：", AutoSize = false, Dock = DockStyle.Fill, TextAlign = ContentAlignment.MiddleCenter };
+            lblCalcLateFee = new Label { Text = "计算滞纳金：", AutoSize = false, Dock = DockStyle.Fill, TextAlign = ContentAlignment.MiddleCenter };
+            lblLateFeeEnd = new Label { Text = "滞纳金截止：", AutoSize = false, Dock = DockStyle.Fill, TextAlign = ContentAlignment.MiddleCenter };
 
             cmbCalcInterest.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbCalcInterest.Dock = DockStyle.Fill;
-            cmbCalcInterest.Anchor = AnchorStyles.Left | AnchorStyles.Right;
 
             cmbCalcLateFee.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbCalcLateFee.Dock = DockStyle.Fill;
-            cmbCalcLateFee.Anchor = AnchorStyles.Left | AnchorStyles.Right;
 
             dtpInterestEnd.Format = DateTimePickerFormat.Short;
             dtpInterestEnd.Dock = DockStyle.Fill;
@@ -353,7 +351,7 @@ namespace SITools.UI.Forms
             lbl.Text = text;
             lbl.Location = new Point(lx, ly + 4);
             lbl.Size = new Size(lw, ch);
-            lbl.TextAlign = ContentAlignment.MiddleRight;
+            lbl.TextAlign = ContentAlignment.MiddleCenter;
             ctl.Location = new Point(cx, cy);
             ctl.Size = new Size(cw, ch);
             parent.Controls.Add(lbl);

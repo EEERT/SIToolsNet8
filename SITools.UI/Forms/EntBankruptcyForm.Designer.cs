@@ -62,7 +62,7 @@ namespace SITools.UI.Forms
 
             // panelOptions
             panelOptions.Dock = DockStyle.Top;
-            panelOptions.Height = 82;
+            panelOptions.Height = 100;
             panelOptions.Controls.Add(grpOptions);
 
             // grpOptions：使用 TableLayoutPanel 内部布局，随窗口宽度自适应
@@ -78,44 +78,44 @@ namespace SITools.UI.Forms
                 RowCount = 2,
                 Padding = new Padding(4, 4, 4, 4)
             };
-            tlpOpts.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));          // label
-            tlpOpts.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));      // control
-            tlpOpts.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));          // label
-            tlpOpts.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));      // control
+            tlpOpts.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 95F));         // label
+            tlpOpts.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));          // control
+            tlpOpts.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 95F));         // label
+            tlpOpts.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));          // control
             tlpOpts.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tlpOpts.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
 
+            lblCalcInterest.AutoSize = false;
             lblCalcInterest.Text = "计算利息：";
-            lblCalcInterest.AutoSize = true;
-            lblCalcInterest.Anchor = AnchorStyles.Right;
-            lblCalcInterest.TextAlign = ContentAlignment.MiddleRight;
+            lblCalcInterest.Dock = DockStyle.Fill;
+            lblCalcInterest.TextAlign = ContentAlignment.MiddleCenter;
 
+            lblInterestEnd.AutoSize = false;
             lblInterestEnd.Text = "利息截止：";
-            lblInterestEnd.AutoSize = true;
-            lblInterestEnd.Anchor = AnchorStyles.Right;
-            lblInterestEnd.TextAlign = ContentAlignment.MiddleRight;
+            lblInterestEnd.Dock = DockStyle.Fill;
+            lblInterestEnd.TextAlign = ContentAlignment.MiddleCenter;
 
+            lblCalcLateFee.AutoSize = false;
             lblCalcLateFee.Text = "计算滞纳金：";
-            lblCalcLateFee.AutoSize = true;
-            lblCalcLateFee.Anchor = AnchorStyles.Right;
-            lblCalcLateFee.TextAlign = ContentAlignment.MiddleRight;
+            lblCalcLateFee.Dock = DockStyle.Fill;
+            lblCalcLateFee.TextAlign = ContentAlignment.MiddleCenter;
 
+            lblLateFeeEnd.AutoSize = false;
             lblLateFeeEnd.Text = "滞纳金截止：";
-            lblLateFeeEnd.AutoSize = true;
-            lblLateFeeEnd.Anchor = AnchorStyles.Right;
-            lblLateFeeEnd.TextAlign = ContentAlignment.MiddleRight;
+            lblLateFeeEnd.Dock = DockStyle.Fill;
+            lblLateFeeEnd.TextAlign = ContentAlignment.MiddleCenter;
 
             cmbCalcInterest.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbCalcInterest.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            cmbCalcInterest.Dock = DockStyle.Fill;
 
             dtpInterestEnd.Format = DateTimePickerFormat.Short;
-            dtpInterestEnd.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            dtpInterestEnd.Dock = DockStyle.Fill;
 
             cmbCalcLateFee.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbCalcLateFee.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            cmbCalcLateFee.Dock = DockStyle.Fill;
 
             dtpLateFeeEnd.Format = DateTimePickerFormat.Short;
-            dtpLateFeeEnd.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            dtpLateFeeEnd.Dock = DockStyle.Fill;
 
             tlpOpts.Controls.Add(lblCalcInterest, 0, 0);
             tlpOpts.Controls.Add(cmbCalcInterest, 1, 0);

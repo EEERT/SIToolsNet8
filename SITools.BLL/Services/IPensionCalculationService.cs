@@ -18,9 +18,9 @@ namespace SITools.BLL.Services
         double CalculatePersonalPrincipal(double baseAmount, ContributionType contributionType, int period);
 
         /// <summary>
-        /// 对基数应用上下限约束
+        /// 对基数应用上下限约束（period 格式为 yyyyMM，用于处理同年不同月存在不同基数标准的情况）
         /// </summary>
-        double ApplyBaseLimit(double baseAmount, int year);
+        double ApplyBaseLimit(double baseAmount, int period);
 
         /// <summary>
         /// 将补缴类型名称转换为枚举

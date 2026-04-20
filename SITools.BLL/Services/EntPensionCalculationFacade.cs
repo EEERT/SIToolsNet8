@@ -45,7 +45,7 @@ namespace SITools.BLL.Services
                     double baseAmount = rec.MonthlyBase;
 
                     if (rec.ApplyBaseLimit)
-                        baseAmount = _pensionSvc.ApplyBaseLimit(baseAmount, date.Year);
+                        baseAmount = _pensionSvc.ApplyBaseLimit(baseAmount, period);
 
                     double unitPrincipal = Math.Round(
                         _pensionSvc.CalculateUnitPrincipal(baseAmount, rec.ContributionType, period), 2);

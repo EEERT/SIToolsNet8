@@ -5,7 +5,9 @@ namespace SITools.DAL.Repositories
     /// </summary>
     public class ContributionBaseRepository : IContributionBaseRepository
     {
-        // 历年企业养老保险缴费基数下限
+        // 历年企业养老保险缴费基数下限（2019年因实施年度内基数调整，分两段处理）
+        // 注意：字典中2019年的值仅作占位，实际值由 GetMinBase(year, month) 按月返回：
+        //       1-4月为3353（旧标准），5-12月为2697（新标准）
         private static readonly Dictionary<int, double> _baseMin = new Dictionary<int, double>
         {
             {1986, 111}, {1987, 111}, {1988, 111}, {1989, 111}, {1990, 111},
@@ -14,11 +16,13 @@ namespace SITools.DAL.Repositories
             {2001, 363}, {2002, 451}, {2003, 524}, {2004, 510}, {2005, 714},
             {2006, 791}, {2007, 892}, {2008, 1023}, {2009, 1231}, {2010, 1444},
             {2011, 1678}, {2012, 1860}, {2013, 2121}, {2014, 2423}, {2015, 2626},
-            {2016, 3026}, {2017, 3290}, {2018, 3582}, {2019, 3236}, {2020, 3463},
+            {2016, 3026}, {2017, 3290}, {2018, 3582}, {2019, 2697}, {2020, 3463},
             {2021, 3726}, {2022, 4071}, {2023, 4246}, {2024, 4511}, {2025, 4588}
         };
 
-        // 历年企业养老保险缴费基数上限
+        // 历年企业养老保险缴费基数上限（2019年因实施年度内基数调整，分两段处理）
+        // 注意：字典中2019年的值仅作占位，实际值由 GetMaxBase(year, month) 按月返回：
+        //       1-4月为20116（旧标准），5-12月为16179（新标准）
         private static readonly Dictionary<int, double> _baseMax = new Dictionary<int, double>
         {
             {1986, 458}, {1987, 458}, {1988, 467}, {1989, 479}, {1990, 492},
@@ -31,15 +35,21 @@ namespace SITools.DAL.Repositories
             {2021, 18630}, {2022, 20355}, {2023, 21228}, {2024, 22555}, {2025, 22938}
         };
 
-        public double GetMinBase(int year)
+        public double GetMinBase(int year, int month)
         {
+            // 2019年1-4月执行旧标准，5-12月执行新标准
+            if (year == 2019)
+                return month <= 4 ? 3353 : 2697;
             if (_baseMin.TryGetValue(year, out double val))
                 return val;
             throw new KeyNotFoundException($"未找到{year}年度的缴费基数下限数据。");
         }
 
-        public double GetMaxBase(int year)
+        public double GetMaxBase(int year, int month)
         {
+            // 2019年1-4月执行旧标准，5-12月执行新标准
+            if (year == 2019)
+                return month <= 4 ? 20116 : 16179;
             if (_baseMax.TryGetValue(year, out double val))
                 return val;
             throw new KeyNotFoundException($"未找到{year}年度的缴费基数上限数据。");
