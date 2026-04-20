@@ -37,12 +37,14 @@ namespace SITools.BLL.Services
             throw new ArgumentException($"未知的补缴类型：{name}");
         }
 
-        public double ApplyBaseLimit(double baseAmount, int year)
+        public double ApplyBaseLimit(double baseAmount, int period)
         {
+            int year = period / 100;
+            int month = period % 100;
             if (!_baseRepo.ContainsYear(year))
                 return baseAmount;
-            double min = _baseRepo.GetMinBase(year);
-            double max = _baseRepo.GetMaxBase(year);
+            double min = _baseRepo.GetMinBase(year, month);
+            double max = _baseRepo.GetMaxBase(year, month);
             if (baseAmount < min) return min;
             if (baseAmount > max) return max;
             return baseAmount;
