@@ -332,7 +332,7 @@
     ]
   },
   "packageFolders": {
-    "/home/runner/.nuget/packages/": {}
+    "/tmp/codeql-scratch-ee9c04e7ea83b00b/dbs/csharp/working/packages": {}
   },
   "project": {
     "version": "1.0.0",
@@ -340,7 +340,7 @@
       "projectUniqueName": "/home/runner/work/SIToolsNet8/SIToolsNet8/SITools.BLL/SITools.BLL.csproj",
       "projectName": "SITools.BLL",
       "projectPath": "/home/runner/work/SIToolsNet8/SIToolsNet8/SITools.BLL/SITools.BLL.csproj",
-      "packagesPath": "/home/runner/.nuget/packages/",
+      "packagesPath": "/tmp/codeql-scratch-ee9c04e7ea83b00b/dbs/csharp/working/packages",
       "outputPath": "/home/runner/work/SIToolsNet8/SIToolsNet8/SITools.BLL/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
@@ -398,6 +398,14 @@
         "assetTargetFallback": true,
         "warn": true,
         "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[8.0.25, 8.0.25]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[8.0.25, 8.0.25]"
+          },
           {
             "name": "Microsoft.WindowsDesktop.App.Ref",
             "version": "[8.0.25, 8.0.25]"
