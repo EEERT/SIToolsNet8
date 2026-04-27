@@ -1,13 +1,21 @@
 namespace SITools.DAL.Repositories
 {
     /// <summary>
-    /// 历年养老保险缴费基数上下限仓储实现
+    /// 历年养老保险缴费基数上下限仓储实现。
+    /// 本类将历年政策规定的缴费基数上下限以"字典"（Dictionary）形式内置于代码中，
+    /// 无需连接数据库，直接在内存中查表获取数据。
+    /// 数据来源：历年重庆市企业职工基本养老保险缴费基数标准政策文件。
     /// </summary>
     public class ContributionBaseRepository : IContributionBaseRepository
     {
-        // 历年企业养老保险缴费基数下限（2019年因实施年度内基数调整，分两段处理）
-        // 注意：字典中2019年的值仅作占位，实际值由 GetMinBase(year, month) 按月返回：
-        //       1-4月为3353（旧标准），5-12月为2697（新标准）
+        // ======================================================================
+        // 历年缴费基数下限表（1986年至2025年）
+        // 说明：
+        //   键（Key）= 年份，值（Value）= 该年度缴费基数下限（元/月）
+        //   2019年比较特殊：当年5月起实施了新标准（从3353降至2697），
+        //   所以字典中2019年的值（2697）仅作为默认占位，
+        //   真正的查询逻辑由 GetMinBase(year, month) 方法按月返回正确值。
+        // ======================================================================
         private static readonly Dictionary<int, double> _baseMin = new Dictionary<int, double>
         {
             {1986, 111}, {1987, 111}, {1988, 111}, {1989, 111}, {1990, 111},
@@ -20,9 +28,12 @@ namespace SITools.DAL.Repositories
             {2021, 3726}, {2022, 4071}, {2023, 4246}, {2024, 4511}, {2025, 4588}
         };
 
-        // 历年企业养老保险缴费基数上限（2019年因实施年度内基数调整，分两段处理）
-        // 注意：字典中2019年的值仅作占位，实际值由 GetMaxBase(year, month) 按月返回：
-        //       1-4月为20116（旧标准），5-12月为16179（新标准）
+        // ======================================================================
+        // 历年缴费基数上限表（1986年至2025年）
+        // 说明：上限通常为社会平均工资的3倍。
+        //   2019年同样存在年度内调整：
+        //   1-4月上限为20116元，5-12月降为16179元。
+        // ======================================================================
         private static readonly Dictionary<int, double> _baseMax = new Dictionary<int, double>
         {
             {1986, 458}, {1987, 458}, {1988, 467}, {1989, 479}, {1990, 492},
@@ -35,26 +46,46 @@ namespace SITools.DAL.Repositories
             {2021, 18630}, {2022, 20355}, {2023, 21228}, {2024, 22555}, {2025, 22938}
         };
 
+        /// <summary>
+        /// 获取指定年月的缴费基数下限。
+        /// 特别处理2019年：该年4月底前执行旧标准（3353元），5月起执行新标准（2697元）。
+        /// 对于其他年份，直接从字典中查找；如果年份不在字典中，抛出异常提示数据缺失。
+        /// </summary>
         public double GetMinBase(int year, int month)
         {
             // 2019年1-4月执行旧标准，5-12月执行新标准
             if (year == 2019)
                 return month <= 4 ? 3353 : 2697;
+
+            // 其他年份直接查表。TryGetValue 是一种安全的字典查找方式：
+            // 如果找到了就把值放入 val 并返回 true；没找到就返回 false，不会引发异常。
             if (_baseMin.TryGetValue(year, out double val))
                 return val;
+
+            // 如果连该年份都没有，说明数据不完整，抛出错误。
             throw new KeyNotFoundException($"未找到{year}年度的缴费基数下限数据。");
         }
 
+        /// <summary>
+        /// 获取指定年月的缴费基数上限。
+        /// 特别处理2019年：1-4月为20116元（旧标准），5-12月为16179元（新标准）。
+        /// </summary>
         public double GetMaxBase(int year, int month)
         {
             // 2019年1-4月执行旧标准，5-12月执行新标准
             if (year == 2019)
                 return month <= 4 ? 20116 : 16179;
+
             if (_baseMax.TryGetValue(year, out double val))
                 return val;
+
             throw new KeyNotFoundException($"未找到{year}年度的缴费基数上限数据。");
         }
 
+        /// <summary>
+        /// 判断指定年度是否有基数数据。
+        /// 只需检查下限字典即可，因为上下限字典的年份是同步维护的。
+        /// </summary>
         public bool ContainsYear(int year)
         {
             return _baseMin.ContainsKey(year);

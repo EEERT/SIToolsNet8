@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SITools.Models")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+17a9b66f553629f4d74d0affa4cbd53318debd8a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0e82a0b3d12120adcd70065c421d3d516dd3fa98")]
 [assembly: System.Reflection.AssemblyProductAttribute("SITools.Models")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SITools.Models")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
