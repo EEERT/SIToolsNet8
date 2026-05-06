@@ -1,0 +1,17 @@
+## .NET / Build artifacts
+[Bb]in/
+[Oo]bj/
+*.user
+*.suo
+.vs/
+*.DotSettings.user
+
+## Visual Studio
+.vscode/
+*.lock.json
+
+## macOS
+.DS_Store
+
+## Rider
+.idea/
