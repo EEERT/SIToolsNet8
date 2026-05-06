@@ -1,4 +1,0 @@
-/home/runner/work/SIToolsNet8/SIToolsNet8/SITools.MAUI/bin/Release/net10.0-android/publish/com.sitools.android-Signed.aab
-/home/runner/work/SIToolsNet8/SIToolsNet8/SITools.MAUI/bin/Release/net10.0-android/publish/com.sitools.android.aab
-/home/runner/work/SIToolsNet8/SIToolsNet8/SITools.MAUI/bin/Release/net10.0-android/publish/com.sitools.android-Signed.apk
-/home/runner/work/SIToolsNet8/SIToolsNet8/SITools.MAUI/bin/Release/net10.0-android/publish/_Microsoft.Android.Resource.Designer.dll
