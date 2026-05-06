@@ -152,7 +152,7 @@ public partial class EntPensionPage : ContentPage
 
     private void ShowError(string message)
     {
-        MainThread.BeginInvokeOnMainThread(async () =>
-            await DisplayAlert("输入错误", message, "确定"));
+        _ = MainThread.InvokeOnMainThreadAsync(() =>
+            DisplayAlertAsync("输入错误", message, "确定"));
     }
 }

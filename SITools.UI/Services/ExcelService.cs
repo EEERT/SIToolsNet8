@@ -97,7 +97,7 @@ namespace SITools.UI.Services
                 {
                     var val = data.Rows[row][col];
                     // DBNull.Value 是数据库空值，需要转换为空字符串（Excel不支持DBNull）
-                    worksheet.Cell(row + 2, col + 1).Value = val == DBNull.Value ? "" : val.ToString();
+                    worksheet.Cell(row + 2, col + 1).Value = Convert.IsDBNull(val) ? "" : val?.ToString();
                 }
             }
 

@@ -1,5 +1,6 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Globalization;
 using SITools.BLL.Services;
 
 namespace SITools.MAUI.Pages;
@@ -38,7 +39,7 @@ public partial class SettingPage : ContentPage
                 updatedRates[row.Year] = rate;
         }
         _interestSvc.UpdateRates(updatedRates);
-        await DisplayAlert("提示", "利率参数已更新！", "确定");
+        await DisplayAlertAsync("提示", "利率参数已更新！", "确定");
     }
 
     private void OnReset(object sender, EventArgs e)
@@ -71,6 +72,6 @@ public class RateRowViewModel : INotifyPropertyChanged
     public RateRowViewModel(int year, double rate)
     {
         Year = year;
-        _rateText = rate.ToString("0.0000");
+        _rateText = rate.ToString("0.0000", CultureInfo.InvariantCulture);
     }
 }

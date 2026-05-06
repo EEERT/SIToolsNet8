@@ -1,3 +1,4 @@
+using System.Globalization;
 using SITools.BLL.Services;
 using SITools.Models.Entities;
 
@@ -49,7 +50,7 @@ public partial class EntBankruptcyResultPage : ContentPage
         var results = new List<BankruptcyDetailResult>();
         foreach (var rec in records)
         {
-            var dueDate = DateTime.ParseExact(rec.Period, "yyyyMM", null);
+            var dueDate = DateTime.ParseExact(rec.Period, "yyyyMM", CultureInfo.InvariantCulture);
             double unitPrincipal = Math.Round(rec.UnitAmount, 2);
             double personalPrincipal = Math.Round(rec.PersonalAmount, 2);
 
