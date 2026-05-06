@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SITools.MAUI.Pages.SettingPage"
+             Title="利率参数设置">
+
+    <VerticalStackLayout>
+
+        <Label Text="历年社保记账利率（小数，如0.0297=2.97%）"
+               FontSize="13" TextColor="Gray" Margin="12,8,12,4" />
+
+        <CollectionView x:Name="cvRates">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid ColumnDefinitions="80,*" Padding="12,4" RowSpacing="0">
+                        <Label Grid.Column="0" Text="{Binding YearText}"
+                               FontSize="15" VerticalOptions="Center" />
+                        <Entry Grid.Column="1" Text="{Binding RateText}"
+                               Keyboard="Numeric" FontSize="15"
+                               Placeholder="如：0.0297" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Grid ColumnDefinitions="*,*" ColumnSpacing="8" Padding="12,8" Margin="0,0,0,16">
+            <Button Grid.Column="0" Text="保存" Clicked="OnSave"
+                    BackgroundColor="#1565C0" TextColor="White" CornerRadius="6" />
+            <Button Grid.Column="1" Text="重置" Clicked="OnReset"
+                    BackgroundColor="#757575" TextColor="White" CornerRadius="6" />
+        </Grid>
+
+    </VerticalStackLayout>
+
+</ContentPage>

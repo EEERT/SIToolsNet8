@@ -1,0 +1,56 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "SITools.BLL/1.0.0": {
+        "dependencies": {
+          "SITools.DAL": "1.0.0",
+          "SITools.Models": "1.0.0"
+        },
+        "runtime": {
+          "SITools.BLL.dll": {}
+        }
+      },
+      "SITools.DAL/1.0.0": {
+        "dependencies": {
+          "SITools.Models": "1.0.0"
+        },
+        "runtime": {
+          "SITools.DAL.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "SITools.Models/1.0.0": {
+        "runtime": {
+          "SITools.Models.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "SITools.BLL/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SITools.DAL/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SITools.Models/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

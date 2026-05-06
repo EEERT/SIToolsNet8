@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SITools.MAUI.MainPage"
+             Title="社保工具">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="16" Padding="24">
+
+            <Label Text="社保补缴计算工具"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   Margin="0,24,0,8" />
+
+            <Label Text="请选择功能"
+                   FontSize="14"
+                   TextColor="Gray"
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,16" />
+
+            <Button Text="企业养老补缴计算"
+                    Clicked="OnEntPensionClicked"
+                    BackgroundColor="#1565C0"
+                    TextColor="White"
+                    HeightRequest="60"
+                    FontSize="16"
+                    CornerRadius="8" />
+
+            <Button Text="企业破产清算计算"
+                    Clicked="OnEntBankruptcyClicked"
+                    BackgroundColor="#1565C0"
+                    TextColor="White"
+                    HeightRequest="60"
+                    FontSize="16"
+                    CornerRadius="8" />
+
+            <Button Text="利率参数设置"
+                    Clicked="OnSettingClicked"
+                    BackgroundColor="#424242"
+                    TextColor="White"
+                    HeightRequest="60"
+                    FontSize="16"
+                    CornerRadius="8" />
+
+            <Label Text="注：Android版不支持Excel导入导出，请手动录入数据。"
+                   FontSize="12"
+                   TextColor="Gray"
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center"
+                   Margin="0,24,0,0" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

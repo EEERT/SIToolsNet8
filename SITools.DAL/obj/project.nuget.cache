@@ -1,12 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Bx306zcJJnY=",
+  "dgSpecHash": "e7M2ZKoLWnw=",
   "success": true,
   "projectFilePath": "/home/runner/work/SIToolsNet8/SIToolsNet8/SITools.DAL/SITools.DAL.csproj",
-  "expectedPackageFiles": [
-    "/tmp/codeql-scratch-ee9c04e7ea83b00b/dbs/csharp/working/packages/microsoft.netcore.app.ref/8.0.25/microsoft.netcore.app.ref.8.0.25.nupkg.sha512",
-    "/tmp/codeql-scratch-ee9c04e7ea83b00b/dbs/csharp/working/packages/microsoft.windowsdesktop.app.ref/8.0.25/microsoft.windowsdesktop.app.ref.8.0.25.nupkg.sha512",
-    "/tmp/codeql-scratch-ee9c04e7ea83b00b/dbs/csharp/working/packages/microsoft.aspnetcore.app.ref/8.0.25/microsoft.aspnetcore.app.ref.8.0.25.nupkg.sha512"
-  ],
+  "expectedPackageFiles": [],
   "logs": []
 }

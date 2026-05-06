@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SITools.UI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0e82a0b3d12120adcd70065c421d3d516dd3fa98")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3977662e8d4ca746606179fce69f7b6485c4f9fd")]
 [assembly: System.Reflection.AssemblyProductAttribute("SITools.UI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SITools.UI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

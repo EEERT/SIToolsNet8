@@ -1,0 +1,8 @@
+<api type="release" assembly-name="SITools.MAUI" mvid="089ca3b6f549439f9cb3c3350d9da4af">
+  <module assembly-name="SITools.MAUI" mvid="089ca3b6f549439f9cb3c3350d9da4af" mvid-bytes="tqOcCEn1n0Ocs8M1DZ2krw==">
+    <types-scratch>
+      <entry key="crc64dad0185ba726b91e/MainActivity" java-name="crc64dad0185ba726b91e/MainActivity" managed-type-name="SITools.MAUI.MainActivity" token="33554443" />
+      <entry key="crc64dad0185ba726b91e/MainApplication" java-name="crc64dad0185ba726b91e/MainApplication" managed-type-name="SITools.MAUI.MainApplication" token="33554444" />
+    </types-scratch>
+  </module>
+</api>

@@ -1,5 +1,6 @@
 using SITools.BLL.Services;
 using SITools.Models.Entities;
+using SITools.UI.Services;
 using System.Data;
 
 namespace SITools.UI.Forms
@@ -7,7 +8,6 @@ namespace SITools.UI.Forms
     /// <summary>
     /// 企业破产清算计算窗体。
     ///
-    /// 与补缴计算窗体（EntPensionForm）不同，破产清算场景的本金数据
     /// 直接从企业提供的 Excel 清算报表中导入（已包含各月各险种的应缴金额），
     /// 系统只需在此基础上计算利息和滞纳金。
     ///

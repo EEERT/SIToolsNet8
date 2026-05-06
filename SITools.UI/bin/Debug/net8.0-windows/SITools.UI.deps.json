@@ -95,7 +95,6 @@
       },
       "SITools.BLL/1.0.0": {
         "dependencies": {
-          "ClosedXML": "0.104.2",
           "SITools.DAL": "1.0.0",
           "SITools.Models": "1.0.0"
         },
